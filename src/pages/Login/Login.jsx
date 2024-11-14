@@ -14,13 +14,14 @@ const Login = () => {
   const [loading,setLoading] = useState(false);
 
   const user_auth = async (event)=>{
-    event.prventDefault();
+    event.preventDefault();
     setLoading(true);
-    if(signState==="Sign In"){
-      await login(email, password);
+    if(signState==="Sign Up"){
+      await signup(name, email, password);
+      
     }
     else{
-      await signup(name, email, password);
+      await login(email, password);
     }
     setLoading(false);
   }
@@ -37,7 +38,7 @@ const Login = () => {
           <form>
             {signState==="Sign Up"?<input value={name} onChange={(e)=>{setName(
               e.target.value)}} type="text" placeholder='Your name' />:<></>}
-            <input  type="text" placeholder='Your name' />
+            {/* <input  type="text" placeholder='Your name' /> */}
             <input value={email} onChange={(e)=>{
               setEmail(e.target.value)}} type="email" placeholder='Email' />
             <input value={password} onChange={(e)=>{
@@ -52,9 +53,9 @@ const Login = () => {
             </div>
           </form>
           <div className="form-switch">
-            {signState==="Sign In"}
-            <p>New to Netflix <span onClick={()=>{setSignState("Sign In")}}>Sign Up Now</span></p>
-            <p>Already  have account? <span>Sign In Now</span></p>
+            {signState==="Sign Up"}
+            <p>New to Netflix <span onClick={()=>{setSignState("Sign Up")}}>Sign Up Now</span></p>
+            <p>Already  have account? <span onClick={()=>{setSignState("Sign In")}}>Sign In Now</span></p>
           </div>
         </div>
 
